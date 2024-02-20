@@ -1,3 +1,8 @@
+## About the project
+
+This is a next.js application that has product catalog page in 2 views - grid and table. It also features detail pages for each product. It has a user panel where the user can see some the details of his profile.
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

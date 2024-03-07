@@ -1,5 +1,4 @@
 import {
-  Box,
   Pagination as MaterialPagination
 } from "@mui/material";
 
@@ -9,29 +8,22 @@ const Pagination = ({
   page
 }) => {
   return (
-
-    <Box
+    <MaterialPagination
       sx={{
-        position: 'fixed',
-        bottom: 0,
-        right: 0,
-        zIndex: 200,
-       paddingBottom: '10px',
-        width: '100%',
-      }}>
-      <MaterialPagination
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-        variant="outlined"
-        count={pagesNumber}
-        onChange={(e, value) => setPage(value)}
-        page={page}
-        data-cy="pagination"
-      />
-    </Box>
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: {
+          xs: 'max-content',
+          sm: '100%'
+        },
+      }}
+      variant="outlined"
+      count={pagesNumber}
+      onChange={(e, value) => setPage(value)}
+      page={page}
+      data-cy="pagination"
+    />
   )
 }
 

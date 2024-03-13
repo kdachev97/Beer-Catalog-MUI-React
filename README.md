@@ -2,6 +2,7 @@
 
 This is a next.js application that has product catalog page in 2 views - grid and table. It also features detail pages for each product. It has a user panel where the user can see some the details of his profile.
 
+You can see the project here: beer-catalog-six.vercel.app/
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

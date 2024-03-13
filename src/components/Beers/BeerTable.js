@@ -60,6 +60,7 @@ const BeerTable = ({
         display: 'flex',
         width: '100%',
         border: 2,
+        marginBottom: '20px'
       }}
     >
       <DataGrid

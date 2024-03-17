@@ -8,21 +8,21 @@ import {
 } from '@mui/material';
 import Image from "next/image";
 import Link from 'next/link';
-import randomBeer from '../../../public/randomBeer.png';
+import defaultPokemon from '../../../public/defaultPokemon.png';
 
-const BeerGrid = ({ beers }) => {
+const PokemonGrid = ({ pokemons }) => {
   return (
 
     <Grid
       container
       spacing={3}
       direction="row"
-      data-cy="beer_grid"
+      data-cy="pokemon_grid"
     >
-      {beers.map(beer => (
+      {pokemons.map(pokemon => (
         <Link
-          key={beer.id}
-          href={`/beers/${beer.id}`}
+          key={pokemon.id}
+          href={`/pokemons/${pokemon.id}`}
         >
           <Grid
             item
@@ -30,7 +30,7 @@ const BeerGrid = ({ beers }) => {
             md={6}
             lg={4}
             xl={3}
-            key={beer.id}
+            key={pokemon.id}
           >
             <Card
               sx={{
@@ -41,17 +41,17 @@ const BeerGrid = ({ beers }) => {
               }}
             >
               <CardActionArea
-                data-cy={`grid-beer-button-${beer.id}`}
+                data-cy={`grid-pokemon-button-${pokemon.id}`}
                 sx={{
                   textAlign: 'center',
                   margin: '10px 0px 10px 0px',
                 }}
               >
                 <Image
-                  src={beer.image_url || randomBeer}
+                  src={pokemon?.sprites?.front_default || defaultPokemon}
                   height={200}
                   width={150}
-                  alt={'image of a beer'}
+                  alt={'image of a pokemon'}
                   objectFit='contain'
                 />
                 <Box
@@ -72,12 +72,12 @@ const BeerGrid = ({ beers }) => {
                         fontSize: '0.85rem'
                       }}
                     >
-                      {beer.abv}% ABV
+                      {pokemon?.base_experience} XP
                     </Typography>
                   </Avatar>
                 </Box>
                 <Typography
-                  data-cy={`grid-beer-${beer.id}`}
+                  data-cy={`grid-pokemon-${pokemon.id}`}
                   sx={{
                     whiteSpace: 'nowrap',
                     overflow: 'hidden',
@@ -85,7 +85,7 @@ const BeerGrid = ({ beers }) => {
                     margin: '0px 10px 0px 10px'
                   }}
                 >
-                  <b>Name:</b> {beer.name}
+                  <b>Name:</b> {pokemon.name.charAt(0).toUpperCase() + pokemon?.name.slice(1)}
                 </Typography>
                 <Typography
                   sx={{
@@ -94,7 +94,7 @@ const BeerGrid = ({ beers }) => {
                     textOverflow: 'ellipsis',
                     margin: '0px 10px 0px 10px'
                   }}>
-                  <b>Tagline:</b> {beer.tagline}
+                  <b>Main move:</b> {pokemon?.moves[0]?.move?.name}
                 </Typography>
               </CardActionArea>
             </Card>
@@ -106,4 +106,4 @@ const BeerGrid = ({ beers }) => {
   );
 }
 
-export default BeerGrid;
+export default PokemonGrid;

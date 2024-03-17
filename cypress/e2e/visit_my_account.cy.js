@@ -1,6 +1,6 @@
 describe('Visit my account page', () => {
   it('goes to my account page', () => {
-    cy.visit('/beers')
+    cy.visit('/pokemons')
     cy.get('[data-cy="My Account"]')
       .click()
     cy.url()

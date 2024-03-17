@@ -1,50 +1,50 @@
-describe('Test beers page', () => {
-  it('goes to beers page', () => {
-    cy.visit('/beers')
-    cy.get('[data-cy="grid-beer-1"]')
+describe('Test pokemons page', () => {
+  it('goes to pokemons page', () => {
+    cy.visit('/pokemons')
+    cy.get('[data-cy="grid-pokemon-1"]')
       .should('exist')
       .and('be.visible')
-      .and('contain', 'Name: Buzz')
+      .and('contain', 'Name: Bulbasaur')
   })
 
-  it('goes to beers page 2 by clicking on 2', () => {
+  it('goes to pokemons page 2 by clicking on 2', () => {
     cy.get('[data-cy="pagination"] > .MuiPagination-ul')
       .children()
       .eq(2)
       .contains('2')
       .click()
-    cy.get('[data-cy="grid-beer-11"]')
+    cy.get('[data-cy="grid-pokemon-11"]')
       .should('exist')
       .and('be.visible')
-      .and('contain', 'Name: Misspent Youth')
+      .and('contain', 'Name: Metapod')
   })
 
-  it('goes to beers page 3 by clicking next button', () => {
+  it('goes to pokemons page 3 by clicking next button', () => {
     cy.get('[data-cy="pagination"] > .MuiPagination-ul')
       .children()
       .eq(8)
       .children()
       .get('[data-testid="NavigateNextIcon"]')
       .click()
-    cy.get('[data-cy="grid-beer-21"]')
+    cy.get('[data-cy="grid-pokemon-21"]')
       .should('exist')
       .and('be.visible')
-      .and('contain', 'Name: Vice Bier')
+      .and('contain', 'Name: Spearow')
   })
 
-  it('goes to beers page 2 by clicking back button', () => {
+  it('goes to pokemons page 2 by clicking back button', () => {
     cy.get('[data-cy="pagination"] > .MuiPagination-ul')
       .children()
       .get('[data-testid="NavigateBeforeIcon"]')
       .click()
-    cy.get('[data-cy="grid-beer-11"]')
+    cy.get('[data-cy="grid-pokemon-11"]')
       .should('exist')
       .and('be.visible')
-      .and('contain', 'Name: Misspent Youth')
+      .and('contain', 'Name: Metapod')
   })
 
-  it('opens beers table view', () => {
-    cy.visit('/beers')
+  it('opens pokemons table view', () => {
+    cy.visit('/pokemons')
     cy.get('[data-cy="table-view-button"]')
       .should('exist')
       .and('be.visible')
@@ -54,16 +54,16 @@ describe('Test beers page', () => {
       .and('be.visible')
       .children()
     cy.get('[data-id="1"] > [data-field="name"] > .MuiDataGrid-cellContent')
-      .should('contain', 'Buzz')
-    cy.get('[data-cy="beer-grid"]')
+      .should('contain', 'Bulbasaur')
+    cy.get('[data-cy="pokemon-grid"]')
       .should('not.exist')
   })
 
   it('uses search bar', () => {
     cy.get('[data-cy="search-input"]')
       .children()
-      .type('buzz')
-      .should('have.value', 'buzz')
+      .type('bulbasaur')
+      .should('have.value', 'Bulbasaur')
     cy.get('[data-cy="search-button"]')
       .click()
     cy.get('[data-id="1"] > [data-field="id"]')
@@ -72,7 +72,7 @@ describe('Test beers page', () => {
     cy.get('[data-id="1"] > [data-field="name"] > .MuiDataGrid-cellContent')
       .should('exist')
       .and('be.visible')
-      .and('contain', 'Buzz')
+      .and('contain', 'Bulbasaur')
     cy.get('[data-id="2"] > [data-field="id"]')
       .should('not.exist')
     cy.get('[data-cy="search-input"]')

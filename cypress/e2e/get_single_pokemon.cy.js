@@ -1,0 +1,17 @@
+describe('Single Pokemon test', () => {
+  it('gets a single pokemon', () => {
+    cy.visit('/pokemons')
+    cy.get('[data-cy="grid-pokemon-button-1"]')
+      .click()
+    cy.url()
+      .should('include', '/pokemons/1')
+    cy.get('[data-cy="single-pokemon-xp-1"]')
+      .should('exist')
+      .and('be.visible')
+      .and('contain', '64 XP')
+    cy.get('[data-cy="single-pokemon-stats-1"]')
+      .should('exist')
+      .and('be.visible')
+      .and('contain', 'hp: 45')
+  })
+})

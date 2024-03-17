@@ -6,19 +6,19 @@ import {
   ListItemIcon,
   ListItemText
 } from "@mui/material";
+import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import SportsBarIcon from "@mui/icons-material/SportsBar";
 import { useRouter } from 'next/router';
 import Image from "next/image";
-import BeerJs from '../../public/beerJs.png';
+import Logo from '../../public/defaultPokemon.png';
 
 const Menu = () => {
   const router = useRouter();
   const menuItems = [
     {
-      text: 'Beers',
-      icon: <SportsBarIcon sx={{ color: '#301934' }} />,
-      path: '/beers'
+      text: 'Pokemons',
+      icon: <CatchingPokemonIcon sx={{ color: '#301934' }} />,
+      path: '/pokemons'
     },
 
     {
@@ -54,7 +54,7 @@ const Menu = () => {
         }}
       >
         <Image
-          src={BeerJs}
+          src={Logo}
           height={130}
           width={130}
           alt={'website logo'}

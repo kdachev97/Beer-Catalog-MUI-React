@@ -16,7 +16,7 @@ export default function Home() {
         </Box>
       ) : (
         <Typography sx={{ fontSize: '20px' }}>
-          Welcome back, <b>{user?.name?.first}{' '}{user?.name?.last}</b>!
+          Welcome back Pokemon Master - <b>{user?.name?.first}{' '}{user?.name?.last}</b>!
         </Typography>
       )}
     </Box>

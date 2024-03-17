@@ -5,15 +5,14 @@ import {
   Typography
 } from "@mui/material";
 import Image from "next/image";
-import randomBeer from '../../../public/randomBeer.png';
 
 export const getServerSideProps = async ({ params }) => {
   try {
-    const res = await axios.get(`https://api.punkapi.com/v2/beers/${params.id}`);
+    const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${params.id}`);
 
     return {
       props: {
-        beer: res.data[0]
+        pokemon: res.data
       },
     };
   } catch (error) {
@@ -21,13 +20,14 @@ export const getServerSideProps = async ({ params }) => {
 
     return {
       props: {
-        beer: null
+        pokemon: null
       },
     };
   }
 }
 
-const SingleBeer = ({ beer }) => {
+const SinglePokemon = ({ pokemon }) => {
+  const imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/'
   return (
     <Container
       sx={{
@@ -52,11 +52,12 @@ const SingleBeer = ({ beer }) => {
         }}
       >
         <Image
-          src={beer?.image_url || randomBeer}
-          alt={'image of a beer'}
-          height={400}
+          src={`${imageUrl + pokemon.id + '.svg'}`}
+          alt={'image of a pokemon'}
+          height={250}
           width={150}
-          objectFit='contain' />
+          objectFit='contain'
+          priority />
       </Box>
       <Box
         sx={{
@@ -85,9 +86,9 @@ const SingleBeer = ({ beer }) => {
             }}
           >
             <Typography
-              data-cy={`single-beer-abv-${beer.id}`}
+              data-cy={`single-pokemon-xp-${pokemon.id}`}
             >
-              ABV: {beer?.abv}%
+              {pokemon.base_experience} XP
             </Typography>
           </Box>
           <Box
@@ -99,7 +100,7 @@ const SingleBeer = ({ beer }) => {
             }}
           >
             <Typography>
-              First brewed: {beer?.first_brewed}
+              Weight: {pokemon?.weight}g
             </Typography>
           </Box>
         </Box>
@@ -107,14 +108,20 @@ const SingleBeer = ({ beer }) => {
           variant='h4'
           sx={{ marginBottom: '10px' }}
         >
-          {beer?.name}
+          {pokemon.name.charAt(0).toUpperCase() + pokemon?.name.slice(1)}
         </Typography>
         <Typography
-            data-cy={`single-beer-tagline-${beer.id}`}
+          data-cy={`single-pokemon-stats-${pokemon.id}`}
           variant='h5'
           sx={{ marginBottom: '20px' }}
         >
-          Tagline: {beer?.tagline}
+          {pokemon.stats.map((stat, index) => (
+            <Typography
+              key={index}
+            >
+              <b>{stat.stat.name}:</b> {stat.base_stat}
+            </Typography>
+          ))}
         </Typography>
         <Box
           sx={{
@@ -126,24 +133,10 @@ const SingleBeer = ({ beer }) => {
             }
           }}
         >
-          <Typography
-            sx={{ marginBottom: '20px' }}
-          >
-            <b>Description:</b> {beer?.description}
-          </Typography>
-          <Typography
-            sx={{
-              marginBottom: {
-                xs: '20px'
-              }
-            }}
-          >
-            <b>Best paired with:</b> {beer?.food_pairing}
-          </Typography>
         </Box>
-      </Box >
-    </Container >
+      </Box>
+    </Container>
   )
 }
 
-export default SingleBeer;
+export default SinglePokemon;

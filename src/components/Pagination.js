@@ -1,12 +1,10 @@
-import {
-  Pagination as MaterialPagination
-} from "@mui/material";
+import { Pagination as MaterialPagination } from "@mui/material";
 
-const Pagination = ({
-  setPage,
-  pagesNumber,
-  page
-}) => {
+const CustomPagination = ({ setPage, pagesNumber, page }) => {
+  const handlePageChange = (_, value) => {
+    setPage(value);
+  };
+
   return (
     <MaterialPagination
       sx={{
@@ -20,11 +18,11 @@ const Pagination = ({
       }}
       variant="outlined"
       count={pagesNumber}
-      onChange={(e, value) => setPage(value)}
+      onChange={handlePageChange}
       page={page}
       data-cy="pagination"
     />
-  )
-}
+  );
+};
 
-export default Pagination;
+export default CustomPagination;

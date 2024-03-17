@@ -12,25 +12,21 @@ const columns = [
     field: 'name',
     headerName: 'Name',
     flex: 0.5,
-    minWidth: 250
+    minWidth: 250,
+    renderCell: (params) => {
+      const name = params.formattedValue.charAt(0).toUpperCase() + params.formattedValue.slice(1);
+      return name;
+    }
   },
   {
-    field: 'abv',
-    headerName: 'ABV',
-    flex: 0.5,
-    minWidth: 150
-  },
-  {
-    field: 'first_brewed',
-    headerName: 'First Brewed',
-    flex: 0.5,
-    minWidth: 150
-  },
-  {
-    field: 'contributed_by',
-    headerName: 'Contributed By',
-    flex: 0.5,
-    minWidth: 260
+    field: 'abilities',
+    headerName: 'Abilities',
+    flex: 1,
+    minWidth: 150,
+    renderCell: (params) => {
+      const abilities = params.row.abilities.map(ability => ability.ability.name).join(', ');
+      return <Typography>{abilities}</Typography>;
+    }
   },
   {
     field: 'Learn More',
@@ -38,21 +34,22 @@ const columns = [
     flex: 0.5,
     minWidth: 200,
     sortable: false,
-    renderCell: (beer) =>
+    renderCell: (pokemon) =>
       <a
-        href={`/beers/${beer.id}`}
+        href={`/pokemons/${pokemon.id}`}
       >
         <Typography sx={{ color: '#0645AD' }}> Learn More </Typography>
       </a>,
   }
 ];
 
-const BeerTable = ({
-  beers,
+const PokemonTable = ({
+  pokemons,
   page,
   onPageChange,
   hideFooter,
 }) => {
+  console.log(pokemons)
   return (
     <Box
       data-cy="table-view"
@@ -79,9 +76,9 @@ const BeerTable = ({
         }}
         autoHeight
         density={'comfortable'}
-        rows={beers}
+        rows={pokemons}
         columns={columns}
-        rowCount={325}
+        rowCount={1311}
         rowsPerPageOptions={[10]}
         pageSize={10}
         page={page}
@@ -93,4 +90,4 @@ const BeerTable = ({
   );
 }
 
-export default BeerTable;
+export default PokemonTable;

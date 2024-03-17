@@ -1,22 +1,29 @@
 import {
   Box,
-  Button,
-  Input,
+  TextField,
+  Button
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 const Search = ({
   onChange,
-  query,
+  onKeyDownCapture,
+  label,
+  value,
   onClick
 }) => {
   return (
-    <Box>
-      <Input
-        data-cy="search-input"
-        type='text'
-        onChange={e => onChange(e.target.value)}
-        value={query}
+    <Box
+      sx={{
+        display: 'flex',
+      }}
+    >
+      <TextField
+        label={label}
+        variant="outlined"
+        value={value}
+        onChange={onChange}
+        onKeyDownCapture={onKeyDownCapture}
       />
       <Button
         data-cy="search-button"
@@ -25,6 +32,7 @@ const Search = ({
         <SearchIcon />
       </Button>
     </Box>
+
   )
 }
 

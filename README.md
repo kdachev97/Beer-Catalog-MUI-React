@@ -1,6 +1,6 @@
 ## About the project
 
-This is a next.js application that has product catalog page in 2 views - grid and table. It also features detail pages for each product. It has a user panel where the user can see some the details of his profile.
+This is a next.js application that has product catalog page in 2 views - grid and table. It also features detail pages for each pokemon. It has a user panel where the user can see some the details of his profile.
 
 You can see the project here: beer-catalog-six.vercel.app/
 

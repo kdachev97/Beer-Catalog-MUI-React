@@ -2,9 +2,11 @@ import axios from 'axios';
 import {
   Box,
   Container,
-  Typography
+  CircularProgress,
+  Typography,
 } from "@mui/material";
 import Image from "next/image";
+import { useState } from "react";
 
 export const getServerSideProps = async ({ params }) => {
   try {
@@ -27,7 +29,17 @@ export const getServerSideProps = async ({ params }) => {
 }
 
 const SinglePokemon = ({ pokemon }) => {
-  const imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/'
+  const [imageLoading, setImageLoading] = useState(true);
+  const imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/';
+
+  const handleImageLoad = () => {
+    setImageLoading(false);
+  }
+
+  const handleImageError = () => {
+    setImageLoading(false);
+  }
+
   return (
     <Container
       sx={{
@@ -51,13 +63,18 @@ const SinglePokemon = ({ pokemon }) => {
           }
         }}
       >
+        {imageLoading && <CircularProgress />}
         <Image
           src={`${imageUrl + pokemon.id + '.svg'}`}
           alt={'image of a pokemon'}
           height={250}
           width={150}
           objectFit='contain'
-          priority />
+          priority
+          onLoad={handleImageLoad}
+          onError={handleImageError}
+          style={{ display: imageLoading ? 'none' : 'block' }}
+        />
       </Box>
       <Box
         sx={{
